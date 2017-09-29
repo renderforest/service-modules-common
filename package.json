@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/renderforest/service-modules-common/issues"
   },
-  "homepage": "https://github.com/renderforest/service-modules-common#readme"
+  "homepage": "https://github.com/renderforest/service-modules-common#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0"
+  }
 }

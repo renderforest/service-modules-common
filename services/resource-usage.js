@@ -42,14 +42,14 @@ const arrayAverage = (array) => {
   }, 0)
   return array.length !== 0 ? {
     cpuLoadPercentage: Number((cpuLoadSum / array.length).toFixed(3)),
-    busyMemoryPercentage: Number((busyMemorySum / array.length).toFixed(3)) 
+    busyMemoryPercentage: Number((busyMemorySum / array.length).toFixed(3))
   } : 0
 }
 /**
  * @returns {object} - Object that contains cpuLoad and busyMemory
- * @description Calls getBusyMemoryPercentage function to get busy memory and 
+ * @description Calls getBusyMemoryPercentage function to get busy memory and
  *  getCpuBusyLoad function to get cpu's load
- *  Returns object with two properties cpuLoad and busyMemory 
+ *  Returns object with two properties cpuLoad and busyMemory
  */
 const statisticsGetter = () => {
   const busyMemory = getBusyMemoryPercentage()
@@ -63,28 +63,28 @@ const statisticsGetter = () => {
 
 /**
  * @returns {number} - Cpu's current load
- * @description Asynchrony measures cpu's state with delay (500ms),
+ * @description Asynchrony measures cpu's state,
  *  calculates difference between two measures and gets cpu busy load
  */
 const getCpuBusyLoad = () => {
-  return Promise.resolve().then(() => cpuAverage()).delay(500).then((startMeasure) => {
+  return Promise.resolve().then(() => cpuAverage()).then((startMeasure) => {
     const endMeasure = cpuAverage()
     const idleDifference = endMeasure.idle - startMeasure.idle
     const totalDifference = endMeasure.total - startMeasure.total
     const cpuLoad = 100 - (100 * idleDifference / totalDifference)
-    return cpuLoad  
+    return cpuLoad
   })
 }
 
 /**
- * 
+ *
  * @param {function} fn - The function that must be called
  * @param {number} interval - Time between function calls
  * @param {number} count - Function's call count
  * @param {[array]} arr - Array for collecting the results (optional)
  * @return {array} - Array that contains given function's results
  * @description Recursively calls given function with given interval between function calls.
- *  Collects given function's results in array 
+ *  Collects given function's results in array
  */
 const intervalRunner = (fn, interval, count, arr = []) => {
   if (count <= 0) {
@@ -92,12 +92,12 @@ const intervalRunner = (fn, interval, count, arr = []) => {
   }
 
   return fn().then(res => {
-    return Promise.delay(interval).then(() => intervalRunner(fn, interval, count - 1, [...arr, res]))  
+    return Promise.delay(interval).then(() => intervalRunner(fn, interval, count - 1, [...arr, res]))
   })
 }
 
 /**
- * 
+ *
  * @param {number} interval - Time between statisticsGetter function calls
  * @param {number} count - Statistics getter function's call count
  * @returns {object} - Object that contain two properties: cpuLoadPercentage, busyMemoryPercentage

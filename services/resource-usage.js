@@ -16,12 +16,11 @@ const getBusyMemoryPercentage = () => 100 - (os.freemem() / os.totalmem() * 100)
  */
 const cpuAverage = () => {
   const cpus = os.cpus()
-  const arraySum = (sum, current) => sum + current
-  const cpuModesSum = (core) => Object.values(core.times).reduce(arraySum, 0)
+  const addTwoNumbers = (num1, num2) => num1 + num2
+  const cpuModesSum = (core) => Object.values(core.times).reduce(addTwoNumbers, 0)
   const cpuIdleModeSum = (core) => Object.values(core.times)[3]
   const totalTime = cpus.reduce((totalTime, core) => totalTime + cpuModesSum(core), 0)
-  const idleModeTime = cpus.reduce((idleModeTime, core) => idleModeTime + cpuIdleModeSum, 0)
-
+  const idleModeTime = cpus.reduce((idleModeTime, core) => idleModeTime + cpuIdleModeSum(core), 0)
   return {
     idle: idleModeTime / cpus.length,
     total: totalTime / cpus.length
@@ -30,7 +29,7 @@ const cpuAverage = () => {
 
 /**
  * @param {number|Array} array - Array of numbers.
- * @return {number} - Average of array.
+ * @return {object} - Object that contains cpuLoadPercentage and busyMemoryPercentage property.
  * @description Calculating average of an array.
  */
 const arrayAverage = (array) => {
@@ -43,8 +42,12 @@ const arrayAverage = (array) => {
   return array.length !== 0 ? {
     cpuLoadPercentage: Number((cpuLoadSum / array.length).toFixed(3)),
     busyMemoryPercentage: Number((busyMemorySum / array.length).toFixed(3))
-  } : 0
+  } : {
+    cpuLoadPercentage: 0,
+    busyMemoryPercentage: 0
+  }
 }
+
 /**
  * @returns {object} - Object that contains cpuLoad and busyMemory
  * @description Calls getBusyMemoryPercentage function to get busy memory and
@@ -67,12 +70,11 @@ const statisticsGetter = () => {
  *  calculates difference between two measures and gets cpu busy load
  */
 const getCpuBusyLoad = () => {
-  return Promise.resolve().then(() => cpuAverage()).then((startMeasure) => {
+  return Promise.resolve().delay(100).then(() => cpuAverage()).then((startMeasure) => {
     const endMeasure = cpuAverage()
     const idleDifference = endMeasure.idle - startMeasure.idle
     const totalDifference = endMeasure.total - startMeasure.total
-    const cpuLoad = 100 - (100 * idleDifference / totalDifference)
-    return cpuLoad
+    return totalDifference === 0 ? 0 : 100 - (100 * idleDifference / totalDifference)
   })
 }
 
@@ -82,7 +84,7 @@ const getCpuBusyLoad = () => {
  * @param {number} interval - Time between function calls
  * @param {number} count - Function's call count
  * @param {[array]} arr - Array for collecting the results (optional)
- * @return {array} - Array that contains given function's results
+ * @return {Promise} - Promise wich contains array of given function's results
  * @description Recursively calls given function with given interval between function calls.
  *  Collects given function's results in array
  */
@@ -105,7 +107,7 @@ const intervalRunner = (fn, interval, count, arr = []) => {
  *  for getting array of cpu load and busy memory load measures. Then computes average of measures.
  */
 const resourcesUsage = (interval, count) => {
-  return intervalRunner(statisticsGetter, interval, count).then(arrayAverage)
+  return intervalRunner(statisticsGetter, Math.floor(interval / count), count).then(arrayAverage).tap(console.log)
 }
 
 module.exports = {resourcesUsage}

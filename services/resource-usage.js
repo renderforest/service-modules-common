@@ -107,7 +107,7 @@ const intervalRunner = (fn, interval, count, arr = []) => {
  *  for getting array of cpu load and busy memory load measures. Then computes average of measures.
  */
 const resourcesUsage = (interval, count) => {
-  return intervalRunner(statisticsGetter, Math.floor(interval / count), count).then(arrayAverage).tap(console.log)
+  return intervalRunner(statisticsGetter, Math.floor(interval / count), count).then(arrayAverage)
 }
 
 module.exports = {resourcesUsage}

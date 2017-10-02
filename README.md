@@ -4,7 +4,10 @@
 
 ### Resource Usage API
 
-ResourceUsage.resourcesUsage(interval, count). Interval is total time in wich you want resoucesUsage function to check statistics. Count is call quantity in single interval. Returns promise wich contains
+ResourceUsage.resourcesUsage(interval, count). 
+
+Interval is total time in wich you want resoucesUsage function to check statistics. Count is call quantity in given interval. 
+Returns promise wich contains: 
 
   ```
   {

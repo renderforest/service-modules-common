@@ -49,14 +49,15 @@ const arrayAverage = (array) => {
 }
 
 /**
+ * @param {number} - Delay between cpu load measures 
  * @returns {object} - Object that contains cpuLoad and busyMemory
  * @description Calls getBusyMemoryPercentage function to get busy memory and
  *  getCpuBusyLoad function to get cpu's load
  *  Returns object with two properties cpuLoad and busyMemory
  */
-const statisticsGetter = () => {
+const statisticsGetter = (delay) => {
   const busyMemory = getBusyMemoryPercentage()
-  return getCpuBusyLoad().then((cpuLoad) => {
+  return getCpuBusyLoad(delay).then((cpuLoad) => {
     return {
       cpuLoad: cpuLoad,
       busyMemory: busyMemory
@@ -65,12 +66,13 @@ const statisticsGetter = () => {
 }
 
 /**
+ * @param {number} - Delay between cpu load measures 
  * @returns {number} - Cpu's current load
  * @description Asynchrony measures cpu's state,
  *  calculates difference between two measures and gets cpu busy load
  */
-const getCpuBusyLoad = () => {
-  return Promise.resolve().delay(100).then(() => cpuAverage()).then((startMeasure) => {
+const getCpuBusyLoad = (delay) => {
+  return Promise.resolve().delay(delay).then(() => cpuAverage()).then((startMeasure) => {
     const endMeasure = cpuAverage()
     const idleDifference = endMeasure.idle - startMeasure.idle
     const totalDifference = endMeasure.total - startMeasure.total
@@ -107,7 +109,8 @@ const intervalRunner = (fn, interval, count, arr = []) => {
  *  for getting array of cpu load and busy memory load measures. Then computes average of measures.
  */
 const resourcesUsage = (interval, count) => {
-  return intervalRunner(statisticsGetter, Math.floor(interval / count), count).then(arrayAverage)
+  const timeBetweenMeasures = Math.floor(interval / count)
+  return intervalRunner(() => statisticsGetter(timeBetweenMeasures), timeBetweenMeasures, count).then(arrayAverage)
 }
 
 module.exports = {resourcesUsage}

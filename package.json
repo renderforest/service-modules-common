@@ -1,0 +1,32 @@
+{
+  "name": "service-modules-common",
+  "version": "1.0.0",
+  "description": "Common helpers and utilities for services",
+  "private": true,
+  "engines": {
+    "node": "8.5.0",
+    "npm": "5.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/renderforest/service-modules-common"
+  },
+  "author": "RenderForest LLC",
+  "contributors": [
+    {
+      "name": "Albert Hambardzumyan",
+      "email": "hambardzumyan.albert@gmail.com"
+    },
+    {
+      "name": "Narek Hovhannisyan",
+      "email": "narekgilmour@gmail.com"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/renderforest/service-modules-common/issues"
+  },
+  "homepage": "https://github.com/renderforest/service-modules-common#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0"
+  }
+}

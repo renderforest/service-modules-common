@@ -1,6 +1,6 @@
 {
   "name": "service-modules-common",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Common helpers and utilities for services",
   "private": true,
   "engines": {

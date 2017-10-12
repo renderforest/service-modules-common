@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/renderforest/service-modules-common#readme",
   "dependencies": {
-    "bluebird": "~3.5.1"
+    "bluebird": "~3.5.1",
+    "winston": "~2.4.0"
   }
 }

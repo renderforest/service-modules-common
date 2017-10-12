@@ -67,7 +67,7 @@ const statisticsGetter = (delay) => {
 
 /**
  * @param {number} delay - Delay between cpu load measures
- * @returns {number} - Cpu's current load
+ * @returns {Promise.<number>} - Cpu's current load
  * @description Asynchronously measures cpu's state, calculates difference between two measures and gets cpu busy load.
  */
 const getCpuBusyLoad = (delay) => {

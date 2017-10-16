@@ -1,3 +1,4 @@
+/* @flow */
 'use strict'
 
 const winston = require('winston')
@@ -10,6 +11,7 @@ winston.setLevels({
   debug: 4,
   silly: 5
 })
+
 winston.addColors({
   error: 'red',
   warn: 'yellow',

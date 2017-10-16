@@ -1,3 +1,4 @@
+/* @flow */
 'use strict'
 
 const os = require('os')
@@ -16,23 +17,29 @@ const getBusyMemoryPercentage = () => 100 - (os.freemem() / os.totalmem() * 100)
  */
 const cpuAverage = () => {
   const cpus = os.cpus()
-  const addTwoNumbers = (num1, num2) => num1 + num2
-  const cpuModesSum = (core) => Object.values(core.times).reduce(addTwoNumbers, 0)
-  const cpuIdleModeSum = (core) => Object.values(core.times)[3]
-  const totalTime = cpus.reduce((totalTime, core) => totalTime + cpuModesSum(core), 0)
+
+  const addTwoNumbers = (num1: number, num2: number) => num1 + num2
+
+  const cpuModesSum = (core): number => Object.values(core.times).reduce(addTwoNumbers, 0)
+
+  const cpuIdleModeSum = (core): number => Object.values(core.times)[3]
+
+  const totalTime = cpus.reduce((_totalTime, core) => _totalTime + cpuModesSum(core), 0)
+
   const idleModeTime = cpus.reduce((idleModeTime, core) => idleModeTime + cpuIdleModeSum(core), 0)
-  return {
+
+  return ({
     idle: idleModeTime / cpus.length,
     total: totalTime / cpus.length
-  }
+  }: TCpuAverage)
 }
 
 /**
- * @param {number|Array} array - Array of numbers.
- * @return {object} - Object that contains cpuLoadPercentage and busyMemoryPercentage property.
- * @description Calculating average of an array.
+ * @param .. TODO: fix this
+ * @return {object} - ..
+ * @description ..
  */
-const arrayAverage = (array) => {
+const arrayAverage = (array: TArrayAverageArg) => {
   const cpuLoadSum = array.reduce((sum, current) => {
     return sum + current.cpuLoad
   }, 0)
@@ -57,7 +64,7 @@ const arrayAverage = (array) => {
  */
 const statisticsGetter = (delay) => {
   const busyMemory = getBusyMemoryPercentage()
-  return getCpuBusyLoad(delay).then((cpuLoad) => {
+  return getCpuBusyLoad(delay).then((cpuLoad: number) => {
     return {
       cpuLoad: cpuLoad,
       busyMemory: busyMemory
@@ -71,7 +78,8 @@ const statisticsGetter = (delay) => {
  * @description Asynchronously measures cpu's state, calculates difference between two measures and gets cpu busy load.
  */
 const getCpuBusyLoad = (delay) => {
-  return Promise.resolve().delay(delay).then(() => cpuAverage()).then((startMeasure) => {
+  return Promise.resolve().delay(delay).then(() => cpuAverage())
+  .then((startMeasure: TCpuAverage) => {
     const endMeasure = cpuAverage()
     const idleDifference = endMeasure.idle - startMeasure.idle
     const totalDifference = endMeasure.total - startMeasure.total
@@ -107,7 +115,7 @@ const intervalRunner = (fn, interval, count, arr = []) => {
  * @description Calls intervalRunner function with statisticsGetter function, interval and count as argument
  *  for getting array of cpu load and busy memory load measures. Then computes average of measures.
  */
-const resourcesUsage = (interval, count) => {
+const resourcesUsage = (interval: number, count: number) => {
   const timeBetweenMeasures = Math.floor(interval / count)
   return intervalRunner(() => statisticsGetter(timeBetweenMeasures), timeBetweenMeasures, count).then(arrayAverage)
 }

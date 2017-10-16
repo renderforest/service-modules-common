@@ -1,0 +1,9 @@
+/* @flow */
+
+
+declare module "./dist/services/http-api" {
+    // This is where we'll list the module's exported interface(s)
+    declare module.exports: {
+        request(options: HttpAPIRequestOptions): Promise<any>
+    }
+}

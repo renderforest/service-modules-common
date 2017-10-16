@@ -11,7 +11,8 @@
     "remove-flow": "node scripts/flow-remover.js",
     "test": "npm run remove-flow && jest",
     "lint": "./node_modules/.bin/eslint",
-    "build": "npm test"
+    "build": "npm test",
+    "flow": "./node_modules/.bin/flow check"
   },
   "repository": {
     "type": "git",

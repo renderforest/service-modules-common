@@ -1,6 +1,7 @@
 # service-modules-common
-
-## Resource Usage API
+Common helpers and utilities for services.
+ 
+## ResourceUsage
 
 ResourceUsage.resourcesUsage(interval, count). 
 
@@ -14,9 +15,9 @@ Returns promise wich contains:
   }
   ```
  
-## Logger API
+## Logger
 
-#### Default logger ####
+#### Default logger
   ```$xslt
     const logger = require('service-modules-common').Logger.Default
     
@@ -41,3 +42,24 @@ Returns promise wich contains:
     - SERVICE_DEFAULT_LOGGER_LEVEL - Supported values (silent, error, warn, info*, verbose, debug, silly)
 
   Note, * marks as default.
+
+
+## HttpApi API
+
+Makes request with given options. In case of connection failure, tries `retryCount` times after `retryDelay` intervals.
+ 
+Defaults
+ * retryCount - 3
+ * retryDelay - 2 (in seconds)
+ * method - 'GET'
+ * json - true
+ 
+  ``` javascript
+    const HttpApi = require('service-modules-common').HttpApi
+  
+    const options = {
+      ...
+    }
+    
+    HttpApi.request(options).then().catch() 
+  ```

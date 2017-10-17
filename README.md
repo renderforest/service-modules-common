@@ -46,6 +46,8 @@ Returns promise wich contains:
 
 ## HttpApi API
 
+#### request(...)
+
 Makes request with given options. In case of connection failure, tries `retryCount` times after `retryDelay` intervals.
  
 Defaults
@@ -60,10 +62,28 @@ Defaults
     const options = {
       ...
     }
-    
     HttpApi.request(options).then().catch() 
   ```
 
+#### authorizedRequest(...)
+
+ * Takes `signKey`, `clientId` and returns a function.
+ * The returned function takes `options`, sets authorization and reused the above API (`request()`) to request with given
+ options.
+ * Due to the reuse of above `request()` API, it supports the same defaults for `options`.
+ 
+  ``` javascript
+    const HttpApi = require('service-modules-common').HttpApi
+
+    const AuthorizedRequest = HttpApi.authorizedRequest(signKey, clientId)
+    
+    
+    const options = {
+      ...
+    }
+    const AuthorizedRequest(options).then().catch()
+  ```
+  
 ## Development
 In case you add new third party dependencies, use flow-typed npm package to add annotations for that packages.
  * npm i -g flow-typed

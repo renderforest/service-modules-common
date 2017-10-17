@@ -1,3 +1,4 @@
+/* @flow */
 'use strict'
 
 const Promise = require('bluebird')
@@ -14,7 +15,7 @@ const promiseRequest = require('request-promise')
  * @description Makes request with given options.
  *  In case of connection failure try `retryCount` times after `retryDelay` intervals.
  */
-function request (options) {
+function request (options: HttpAPIRequestOptions) {
   const _options = Object.assign({}, options)
 
   // set defaults
@@ -25,7 +26,7 @@ function request (options) {
 
   const retryRequest = (options, retries) => {
     return promiseRequest(options)
-      .catch(err => {
+      .catch((err: Error) => {
         if (retries > 0) {
           return Promise.delay(retryDelay * 1000).then(() => retryRequest(options, retries - 1))
         } else {
@@ -37,4 +38,6 @@ function request (options) {
   return retryRequest(_options, retryCount)
 }
 
-module.exports = {request}
+module.exports = {
+  request
+}

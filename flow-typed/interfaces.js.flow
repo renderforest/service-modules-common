@@ -1,0 +1,21 @@
+
+declare type HttpAPIRequestOptions = {
+    uri: string;
+    retryCount?: number;
+    retryDelay?: number;
+    method?: string;
+    json?: boolean;
+}
+
+
+declare type TLoadMemory = {
+    cpuLoad: number,
+    busyMemory: number
+  }
+  
+declare type TArrayAverageArg = Array<TLoadMemory>
+
+declare type TCpuAverage = {
+    idle: number,
+    total: number
+  }

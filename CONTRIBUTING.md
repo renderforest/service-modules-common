@@ -4,7 +4,7 @@
 
 #### Step 1: Clone
 
-Clone the project on [GitHub](https://github.com/renderforest/service-modules-common):
+Clone the project on [GitHub](https://github.com/renderforest/service-modules-common)
    
    ```bash
    $ git clone https://github.com/renderforest/service-modules-common

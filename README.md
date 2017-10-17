@@ -64,7 +64,7 @@ Defaults
     HttpApi.request(options).then().catch() 
   ```
 
-## Project Setup
-In case you add new thrid party dependencies, use flow-typed npm package to add annotations for that packages
-npm i -g flow-typed
-flow-typed install
+## Development
+In case you add new third party dependencies, use flow-typed npm package to add annotations for that packages.
+ * npm i -g flow-typed
+ * flow-typed install

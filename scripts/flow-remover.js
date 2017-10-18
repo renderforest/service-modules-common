@@ -7,8 +7,8 @@ const deleteFileOrFolderRecursive = (path) => {
     return fs.unlinkSync(path)
   }
   if (fs.existsSync(path)) {
-    fs.readdirSync(path).forEach(function(file, index) {
-      const curPath = path + "/" + file
+    fs.readdirSync(path).forEach(function (file, index) {
+      const curPath = path + '/' + file
       if (fs.lstatSync(curPath).isDirectory()) { // recurse
         deleteFileOrFolderRecursive(curPath)
       } else { // delete file
@@ -55,7 +55,7 @@ const tester = (string) => {
 }
 
 // Empty DIST folder
-fs.readdirSync(dist).map(f => deleteFileOrFolderRecursive(path.join(dist,f)))
+fs.readdirSync(dist).map(f => deleteFileOrFolderRecursive(path.join(dist, f)))
 
 // Run Flow Remover
 folderScanner(tester, input => flowRemoveTypes(input, { pretty: true }))(src, dist)

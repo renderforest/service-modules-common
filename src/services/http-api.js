@@ -20,7 +20,7 @@ function request (options: HttpAPIRequestOptions) {
   const _options = Object.assign({}, options)
 
   // set defaults
-  const retryCount = _options.retryCount || 3
+  const retryCount = _options.retryCount || (_options.retryCount === 0 ? 0 : 3)
   const retryDelay = _options.retryDelay || 2
   _options.method = _options.method || 'GET'
   if (typeof _options.json === 'undefined') _options.json = true

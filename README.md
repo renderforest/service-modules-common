@@ -1,18 +1,27 @@
 # service-modules-common
 Common helpers and utilities for services.
  
+#API 
+ 
 ## ResourceUsage
 
-ResourceUsage.resourcesUsage(interval, count). 
+#### resourcesUsage(interval, count). 
 
-Interval is total time in wich you want resoucesUsage function to check statistics. Count is call quantity in given interval. 
-Returns promise wich contains: 
+* Interval is a total time in which you want to check statistics. 
+* Count is call quantity in given interval. 
+* Returns promise.
 
-  ```
-  {
-    cpuLoadPercentage: number
-    busyMemoryPercentage: number
-  }
+  ``` javascript
+    const ResourceUsage = require('service-modules-common').ResourceUsage
+  
+    ResourceUsage.resourcesUsage(interval, count).then((result) => {
+      
+      /**
+       * result -> 
+       *    { cpuLoadPercentage: number
+       *      busyMemoryPercentage: number }
+       */
+    }).catch() 
   ```
  
 ## Logger
@@ -44,7 +53,7 @@ Returns promise wich contains:
   Note, * marks as default.
 
 
-## HttpApi API
+## HttpApi
 
 #### request(...)
 
@@ -68,7 +77,7 @@ Defaults
 #### authorizedRequest(...)
 
  * Takes `signKey`, `clientId` and returns a function.
- * The returned function takes `options`, sets authorization and reused the above API (`request()`) to request with given
+ * The returned function takes `options`, sets authorization and reuses the above API (`request()`) to request with given
  options.
  * Due to the reuse of above `request()` API, it supports the same defaults for `options`.
  
@@ -84,7 +93,7 @@ Defaults
     const AuthorizedRequest(options).then().catch()
   ```
   
-## Development
+# Development
 In case you add new third party dependencies, use flow-typed npm package to add annotations for that packages.
  * npm i -g flow-typed
  * flow-typed install

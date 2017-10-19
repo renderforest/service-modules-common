@@ -24,6 +24,7 @@
     "winston": "~2.4.0"
   },
   "devDependencies": {
+    "babel-eslint": "~8.0.1",
     "babel-preset-flow": "~6.23.0",
     "eslint": "~4.9.0",
     "eslint-config-airbnb": "~16.1.0",
@@ -54,9 +55,9 @@
     "url": "https://github.com/renderforest/service-modules-common"
   },
   "scripts": {
-    "build": "npm test",
+    "build": "npm run lint && npm test",
     "flow": "./node_modules/.bin/flow check",
-    "lint": "./node_modules/.bin/eslint",
+    "lint": "./node_modules/.bin/eslint ./src",
     "remove-flow": "node scripts/flow-remover.js",
     "test": "npm run remove-flow && jest"
   }

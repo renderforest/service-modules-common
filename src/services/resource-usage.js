@@ -57,6 +57,21 @@ const arrayAverage = (array: TArrayAverageArg) => {
 
 /**
  * @param {number} delay - Delay between cpu load measures
+ * @returns {Promise.<number>} - Cpu's current load
+ * @description Asynchronously measures cpu's state, calculates difference between two measures and gets cpu busy load.
+ */
+const getCpuBusyLoad = (delay) => {
+  return Promise.resolve().delay(delay).then(() => cpuAverage())
+    .then((startMeasure: TCpuAverage) => {
+      const endMeasure = cpuAverage()
+      const idleDifference = endMeasure.idle - startMeasure.idle
+      const totalDifference = endMeasure.total - startMeasure.total
+      return totalDifference === 0 ? 0 : 100 - (100 * idleDifference / totalDifference)
+    })
+}
+
+/**
+ * @param {number} delay - Delay between cpu load measures
  * @returns {object} - Object that contains cpuLoad and busyMemory
  * @description Calls getBusyMemoryPercentage function to get busy memory and
  *  getCpuBusyLoad function to get cpu's load
@@ -69,21 +84,6 @@ const statisticsGetter = (delay) => {
       cpuLoad: cpuLoad,
       busyMemory: busyMemory
     }
-  })
-}
-
-/**
- * @param {number} delay - Delay between cpu load measures
- * @returns {Promise.<number>} - Cpu's current load
- * @description Asynchronously measures cpu's state, calculates difference between two measures and gets cpu busy load.
- */
-const getCpuBusyLoad = (delay) => {
-  return Promise.resolve().delay(delay).then(() => cpuAverage())
-  .then((startMeasure: TCpuAverage) => {
-    const endMeasure = cpuAverage()
-    const idleDifference = endMeasure.idle - startMeasure.idle
-    const totalDifference = endMeasure.total - startMeasure.total
-    return totalDifference === 0 ? 0 : 100 - (100 * idleDifference / totalDifference)
   })
 }
 
@@ -120,6 +120,13 @@ const resourcesUsage = (interval: number, count: number) => {
   return intervalRunner(() => statisticsGetter(timeBetweenMeasures), timeBetweenMeasures, count).then(arrayAverage)
 }
 
-module.exports = {resourcesUsage}
+module.exports = { resourcesUsage }
 
-module.exports.__test__ = {getBusyMemoryPercentage, getCpuBusyLoad, statisticsGetter, intervalRunner, arrayAverage, cpuAverage}
+module.exports.__test__ = {
+  getBusyMemoryPercentage,
+  getCpuBusyLoad,
+  statisticsGetter,
+  intervalRunner,
+  arrayAverage,
+  cpuAverage
+}

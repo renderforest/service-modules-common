@@ -122,4 +122,4 @@ const resourcesUsage = (interval, count) => {
 
 module.exports = {resourcesUsage}
 
-module.exports.__test__ = {getBusyMemoryPercentage, getCpuBusyLoad, statisticsGetter, resourcesUsage, intervalRunner, arrayAverage}
+module.exports.__test__ = {getBusyMemoryPercentage, getCpuBusyLoad, statisticsGetter, intervalRunner, arrayAverage, cpuAverage}

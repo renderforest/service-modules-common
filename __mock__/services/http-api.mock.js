@@ -2,8 +2,32 @@
 'use strict'
 
 const Promise = require('bluebird')
-const AuthService = require('service-auth')
-const promiseRequest = require('request-promise')
+
+/**
+ * 
+ * @param {object} options 
+ * @param {number} signKey 
+ * @param {number} clientId
+ * @returns {object} - Assigned singnKey, clientId to it.
+ * @description Assiging signKey and clientId to options object(mocked). 
+ */
+const AuthServiceMocked = (options, signKey, clientId) => {
+  return {
+    ...options,
+    signKey: signKey,
+    clientId: clientId 
+  }
+}
+
+/**
+ * 
+ * @param {object} options
+ * @returns {Promise} Resolved or rejected.
+ * @description If options object have data property, then returns Promise resolve, else rejets it. 
+ */
+const promiseRequestMocked = (options) => {
+  return options.data? Promise.resolve(options) : Promise.reject(options) 
+}
 
 /**
  * @param {object} options
@@ -15,22 +39,21 @@ const promiseRequest = require('request-promise')
  * @returns {Promise}
  * @description Makes request with given options.
  *  In case of connection failure tries `retryCount` times after `retryDelay` intervals.
- *  retryDelay multiplayed by 1000 to get seconds.
  */
 function request (options: HttpAPIRequestOptions) {
   const _options = Object.assign({}, options)
 
   // set defaults
-  const retryCount = _options.retryCount || (_options.retryCount === 0 ? 0 : 3)
+  const retryCount = _options.retryCount || (_options.retryCount === 0 ? 0 : 1)
   const retryDelay = _options.retryDelay || 2
   _options.method = _options.method || 'GET'
-  if (typeof _options.json === 'undefined') _options.json = true
 
+  if (typeof _options.json === 'undefined') _options.json = true
   const retryRequest = (options, retries) => {
-    return promiseRequest(options)
+    return promiseRequestMocked(options)
       .catch((err: Error) => {
         if (retries > 0) {
-          return Promise.delay(retryDelay * 1000).then(() => retryRequest(options, retries - 1))
+          return Promise.delay(retryDelay).then(() => retryRequest(options, retries - 1))
         } else {
           return Promise.reject(err)
         }
@@ -49,7 +72,7 @@ function request (options: HttpAPIRequestOptions) {
  */
 function authorizedRequest (signKey, clientId) {
   return (options) => {
-    const finalOptions = AuthService.setAuthorization(options, signKey, clientId)
+    const finalOptions = AuthServiceMocked(options, signKey, clientId)
 
     return request(finalOptions)
   }

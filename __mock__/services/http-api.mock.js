@@ -4,7 +4,6 @@
 const Promise = require('bluebird')
 
 /**
- * 
  * @param {object} options 
  * @param {number} signKey 
  * @param {number} clientId
@@ -15,18 +14,22 @@ const AuthServiceMocked = (options, signKey, clientId) => {
   return {
     ...options,
     signKey: signKey,
-    clientId: clientId 
+    clientId: clientId
   }
 }
 
 /**
- * 
  * @param {object} options
+ * @param {number} callCount
  * @returns {Promise} Resolved or rejected.
- * @description If options object have data property, then returns Promise resolve, else rejets it. 
+ * @description If options object have truthy resolve property, then returns Promise resolve, else rejets it. 
  */
-const promiseRequestMocked = (options) => {
-  return options.data? Promise.resolve(options) : Promise.reject(options) 
+const promiseRequestMocked = (options, retries) => {
+  const optionsWithRetries = {
+    ...options,
+    retries: retries
+  }
+  return options.resolve === true ? Promise.resolve(optionsWithRetries) : Promise.reject(optionsWithRetries)
 }
 
 /**
@@ -50,7 +53,7 @@ function request (options: HttpAPIRequestOptions) {
 
   if (typeof _options.json === 'undefined') _options.json = true
   const retryRequest = (options, retries) => {
-    return promiseRequestMocked(options)
+    return promiseRequestMocked(options, retries)
       .catch((err: Error) => {
         if (retries > 0) {
           return Promise.delay(retryDelay).then(() => retryRequest(options, retries - 1))

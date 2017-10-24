@@ -4,22 +4,49 @@ const httpApiMock = require('../../__mock__/services/http-api.mock')
 
 describe('http-api: ', () => {
   describe('request(): ', () => {
-    test('should be valid. Must resolve promise with object.', () => {
+    test('should be valid. Case where retryCount is 0. Must resolve promise with options.', () => {
       const options = {
-        data: 'mock-data'
+        resolve: true,
+        retryCount: 0
       }
 
-      expect.assertions(1)
-      return httpApiMock.request(options).then(response => expect(typeof response).toBe('object'))
+      expect.assertions(3)
+      // promiseRequestMocked function returns Promise with retries
+      return httpApiMock.request(options).then(response => {
+        expect(response.retries).toBe(0)
+        expect(response.method).toBe('GET')
+        expect(response.json).toBeTruthy()
+      })
     })
 
-    test('should be invalid. Must reject promise with object.', () => {
-      const fakeOptions = {
-        retryCount: 5
+    test('should be valid. retryCount is not predefined. Must resolve promise with options.', () => {
+      const options = {
+        resolve: true
       }
 
-      expect.assertions(1)
-      return httpApiMock.request(fakeOptions).catch(rejection => expect(typeof rejection).toBe('object'))
+      expect.assertions(3)
+      return httpApiMock.request(options).then(response => {
+        expect(response.retries).toBe(1)
+        expect(response.method).toBe('GET')
+        expect(response.json).toBeTruthy()
+      })
+    })
+
+    test('should be invalid. Must reject promise with retries count.', () => {
+      const retryCount = 5
+      const options = {
+        retryCount,
+        method: 'POST',
+        json: false,
+        resolve: false
+      }
+
+      expect.assertions(3)
+      return httpApiMock.request(options).catch(rejection => {
+        expect(rejection.retries).toBe(0)
+        expect(rejection.method).toBe('POST')
+        expect(rejection.json).toBeFalsy()
+      })
     })
   })
 

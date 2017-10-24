@@ -1,41 +1,38 @@
-const lib = require('../../__mock__/services/http-api.mock')
+'use strict'
 
-test('Testing TBD', () => {
-  expect(lib.request).toBeDefined()
-  expect(lib.authorizedRequest).toBeDefined()
-})
+const httpApiMock = require('../../__mock__/services/http-api.mock')
 
-describe('testing async functions.', () => {
-  beforeEach(() => {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 6000
+describe('http-api: ', () => {
+  describe('request(): ', () => {
+    test('should be valid. Must resolve promise with object.', () => {
+      const options = {
+        data: 'mock-data'
+      }
+
+      expect.assertions(1)
+      return httpApiMock.request(options).then(response => expect(typeof response).toBe('object'))
+    })
+
+    test('should be invalid. Must reject promise with object.', () => {
+      const fakeOptions = {
+        retryCount: 5
+      }
+
+      expect.assertions(1)
+      return httpApiMock.request(fakeOptions).catch(rejection => expect(typeof rejection).toBe('object'))
+    })
   })
 
-  it('should test request function.', () => {
-    const options = {
-      data: 'google.com'
-    }
+  describe('authorizedRequest(): ', () => {
+    test('should be valid. Must resolve promise with object.', () => {
+      const options = {
+        data: 'mock-data'
+      }
+      const signKey = 'mock-signKey'
+      const clientId = 'mock-clientId'
 
-    expect.assertions(1)
-    return lib.request(options).then(res => expect(typeof res).toBe('object'))
-  })
-
-  it('should test request function retry case.', () => {
-    const fakeOptions = {
-      retryCount: 5
-    }
-
-    expect.assertions(1)
-    return lib.request(fakeOptions).catch(rej => expect(typeof rej).toBe('object'))
-  })
-
-  it('authorizedRequest function test.', () => {
-    const options = {
-      data: 'google.com'
-    }
-    const signKey = 1234
-    const clientId = 4321
-
-    expect.assertions(1)
-    return lib.authorizedRequest(signKey, clientId)(options).then(response => expect(typeof response).toBe('object'))
+      expect.assertions(1)
+      return httpApiMock.authorizedRequest(signKey, clientId)(options).then(response => expect(typeof response).toBe('object'))
+    })
   })
 })

@@ -46,6 +46,14 @@
     "npm": "5.5.1"
   },
   "homepage": "https://github.com/renderforest/service-modules-common#readme",
+  "keywords": [
+    "Helpers",
+    "HttpApi service",
+    "Logger service",
+    "ResourceUsage service",
+    "Service",
+    "Utilities"
+  ],
   "main": "dist/index.js",
   "private": true,
   "repository": {

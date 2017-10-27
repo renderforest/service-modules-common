@@ -54,7 +54,7 @@
   "scripts": {
     "build": "npm run lint && npm test",
     "flow": "./node_modules/.bin/flow check",
-    "lint": "./node_modules/.bin/eslint ./src",
+    "lint": "./node_modules/.bin/eslint ./src --fix",
     "remove-flow": "node scripts/flow-remover.js",
     "test": "npm run remove-flow && jest"
   }

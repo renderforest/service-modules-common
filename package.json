@@ -24,7 +24,7 @@
     "bluebird": "~3.5.1",
     "request": "~2.83.0",
     "request-promise": "~4.2.2",
-    "service-auth": "https://github.com/renderforest/service-auth#v1.0.0",
+    "service-auth": "https://github.com/renderforest/service-auth#v1.3.3",
     "winston": "~2.4.0"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
     "eslint-loader": "~1.9.0",
     "eslint-plugin-flowtype": "~2.39.1",
     "eslint-plugin-import": "~2.8.0",
-    "eslint-plugin-node": "~5.2.0",
+    "eslint-plugin-node": "~5.2.1",
     "eslint-plugin-promise": "~3.6.0",
     "eslint-plugin-standard": "~3.0.1",
     "fixpack": "~2.3.1",

@@ -20,13 +20,13 @@ const cpuAverage = () => {
 
   const addTwoNumbers = (num1: number, num2: number) => num1 + num2
 
-  const cpuModesSum = (core): number => Object.values(core.times).reduce(addTwoNumbers, 0)
+  const cpuModesSum = (core): number => Object.keys(core.times).map(key => core.times[key]).reduce(addTwoNumbers, 0)
 
-  const cpuIdleModeSum = (core): number => Object.values(core.times)[3]
+  const cpuIdleMode = (core): number => core.times.idle
 
   const totalTime = cpus.reduce((_totalTime, core) => _totalTime + cpuModesSum(core), 0)
 
-  const idleModeTime = cpus.reduce((idleModeTime, core) => idleModeTime + cpuIdleModeSum(core), 0)
+  const idleModeTime = cpus.reduce((idleModeTime, core) => idleModeTime + cpuIdleMode(core), 0)
 
   return ({
     idle: idleModeTime / cpus.length,

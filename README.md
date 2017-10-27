@@ -1,7 +1,7 @@
 # service-modules-common
 Common helpers and utilities for services.
  
-#API 
+# API 
  
 ## ResourceUsage
 
@@ -90,7 +90,7 @@ Defaults
     const options = {
       ...
     }
-    const AuthorizedRequest(options).then().catch()
+    AuthorizedRequest(options).then().catch()
   ```
   
 # Development

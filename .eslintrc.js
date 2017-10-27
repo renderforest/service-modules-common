@@ -7,7 +7,11 @@ module.exports = {
   ],
   globals: {
     'expect': false,
-    'test': false
+    'test': false,
+    'it': false,
+    'describe': false,
+    'beforeEach': false,
+    'jasmine': false
   },
   plugins: ['flowtype'],
   rules: {

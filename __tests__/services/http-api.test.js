@@ -51,15 +51,19 @@ describe('http-api: ', () => {
   })
 
   describe('authorizedRequest(): ', () => {
-    test('should be valid. Must resolve promise with object.', () => {
+    test('should be valid. Must resolve promise with object, verifies if object have signKey and clientId props.', () => {
       const options = {
-        data: 'mock-data'
+        resolve: true
       }
       const signKey = 'mock-signKey'
       const clientId = 'mock-clientId'
 
-      // expect.assertions(1)
-      // return httpApiMock.authorizedRequest(signKey, clientId)(options).then(response => console.log(response))
+      expect.assertions(3)
+      return httpApiMock.authorizedRequest(signKey, clientId)(options).then(response => {
+        expect(typeof response).toBe('object')
+        expect(response.signKey).toBe(signKey)
+        expect(response.clientId).toBe(clientId)
+      })
     })
   })
 })

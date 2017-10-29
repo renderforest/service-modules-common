@@ -31,14 +31,14 @@ describe('resources usage: ', () => {
   })
 
   describe('getCpuBusyLoad(): ', () => {
-    test('should be valid. ', () => {
+    test('should be valid. Must return number.', () => {
       expect.assertions(1)
       return resourceUsage.__test__.getCpuBusyLoad(200).then((load) => expect(typeof load).toBe('number'))
     })
   })
 
   describe('intervalRunner(): ', () => {
-    test('should test intervalRunner function.', () => {
+    test('should be valid. Must return array.', () => {
       const fn = () => Promise.resolve(0)
 
       expect.assertions(1)
@@ -46,7 +46,7 @@ describe('resources usage: ', () => {
         .then((arr) => expect(arr).toEqual([0, 0, 0, 0, 0]))
     })
 
-    test('should test intervalRunner function in case of count <= 0.', () => {
+    test('should be valid. Must return empty array when call count is 0.', () => {
       const fn = () => Promise.resolve(0)
 
       expect.assertions(1)
@@ -62,7 +62,7 @@ describe('resources usage: ', () => {
         .then((resourceUsage) => expect(typeof resourceUsage).toBe('object'))
     })
 
-    test('should be valid. Must return object with nomber props.', () => {
+    test('should be valid. Must return object with number props.', () => {
       expect.assertions(2)
       return resourceUsage.resourcesUsage(100, 5)
         .then((resourceUsage) => {

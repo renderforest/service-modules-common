@@ -1,6 +1,11 @@
 # service-modules-common
 Common helpers and utilities for services.
- 
+
+[![Build Status](https://travis-ci.org/renderforest/service-modules-common.svg?branch=master)](https://travis-ci.org/renderforest/service-modules-common)
+[![GitHub issues](https://img.shields.io/github/issues/renderforest/service-modules-common.svg)](https://github.com/renderforest/service-modules-common/issues)
+[![GitHub release](https://img.shields.io/github/release/renderforest/service-modules-common.svg)](https://github.com/renderforest/service-modules-common/releases)
+[![GitHub stars](https://img.shields.io/github/stars/renderforest/service-modules-common.svg)](https://github.com/renderforest/service-modules-common/stargazers)
+
 # API 
  
 ## ResourceUsage

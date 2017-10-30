@@ -15,6 +15,7 @@ const promiseRequest = require('request-promise')
  * @returns {Promise}
  * @description Makes request with given options.
  *  In case of connection failure tries `retryCount` times after `retryDelay` intervals.
+ *  retryDelay multiplayed by 1000 to get seconds.
  */
 function request (options: HttpAPIRequestOptions) {
   const _options = Object.assign({}, options)

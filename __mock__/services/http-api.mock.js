@@ -1,9 +1,29 @@
-/*  */
 'use strict'
 
 const Promise = require('bluebird')
-const AuthService = require('service-auth')
-const promiseRequest = require('request-promise')
+
+/**
+ * @param {object} options
+ * @param {string} signKey
+ * @param {string} clientId
+ * @returns {object} - Assigned singKey, clientId to it.
+ * @description Assigning signKey and clientId to options object(mocked).
+ */
+const AuthServiceMocked = (options, signKey, clientId) => {
+  return Object.assign({}, options, {signKey, clientId})
+}
+
+/**
+ * @param {object} options
+ * @param {number} retries
+ * @returns {Promise} Resolved or rejected.
+ * @description If options object have truthy resolve property, then returns Promise resolve, else rejects it.
+ */
+const promiseRequestMocked = (options, retries) => {
+  const optionsWithRetries = Object.assign({}, options, {retries})
+
+  return options.resolve === true ? Promise.resolve(optionsWithRetries) : Promise.reject(optionsWithRetries)
+}
 
 /**
  * @param {object} options
@@ -15,7 +35,6 @@ const promiseRequest = require('request-promise')
  * @returns {Promise}
  * @description Makes request with given options.
  *  In case of connection failure tries `retryCount` times after `retryDelay` intervals.
- *  retryDelay multiplayed by 1000 to get seconds.
  */
 function request (options) {
   const _options = Object.assign({}, options)
@@ -24,13 +43,13 @@ function request (options) {
   const retryCount = _options.retryCount || (_options.retryCount === 0 ? 0 : 3)
   const retryDelay = _options.retryDelay || 2
   _options.method = _options.method || 'GET'
-  if (typeof _options.json === 'undefined') _options.json = true
 
+  if (typeof _options.json === 'undefined') _options.json = true
   const retryRequest = (options, retries) => {
-    return promiseRequest(options)
+    return promiseRequestMocked(options, retries)
       .catch((err) => {
         if (retries > 0) {
-          return Promise.delay(retryDelay * 1000).then(() => retryRequest(options, retries - 1))
+          return Promise.delay(retryDelay).then(() => retryRequest(options, retries - 1))
         } else {
           return Promise.reject(err)
         }
@@ -49,7 +68,7 @@ function request (options) {
  */
 function authorizedRequest (signKey, clientId) {
   return (options) => {
-    const finalOptions = AuthService.setAuthorization(options, signKey, clientId)
+    const finalOptions = AuthServiceMocked(options, signKey, clientId)
 
     return request(finalOptions)
   }

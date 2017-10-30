@@ -10,11 +10,7 @@ const Promise = require('bluebird')
  * @description Assigning signKey and clientId to options object(mocked).
  */
 const AuthServiceMocked = (options, signKey, clientId) => {
-  return {
-    ...options,
-    signKey: signKey,
-    clientId: clientId
-  }
+  return Object.assign({}, options, {signKey, clientId})
 }
 
 /**
@@ -24,10 +20,8 @@ const AuthServiceMocked = (options, signKey, clientId) => {
  * @description If options object have truthy resolve property, then returns Promise resolve, else rejects it.
  */
 const promiseRequestMocked = (options, retries) => {
-  const optionsWithRetries = {
-    ...options,
-    retries: retries
-  }
+  const optionsWithRetries = Object.assign({}, options, {retries})
+
   return options.resolve === true ? Promise.resolve(optionsWithRetries) : Promise.reject(optionsWithRetries)
 }
 

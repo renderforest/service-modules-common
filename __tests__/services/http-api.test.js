@@ -19,7 +19,7 @@ describe('http-api: ', () => {
       })
     })
 
-    test('should be valid. retryCount is not predefined. Must resolve promise with options.', () => {
+    test('should be valid. Use default `retryCount` value. Must resolve promise with options.', () => {
       const options = {
         resolve: true
       }
@@ -51,7 +51,7 @@ describe('http-api: ', () => {
   })
 
   describe('authorizedRequest(): ', () => {
-    test('should be valid. Must resolve promise with object, verifies if object have signKey and clientId props.', () => {
+    test('should be valid. Must resolve promise with object. Should have signKey and clientId props.', () => {
       const options = {
         resolve: true
       }

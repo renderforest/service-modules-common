@@ -1,14 +1,13 @@
-/* @flow */
 'use strict'
 
 const Promise = require('bluebird')
 
 /**
  * @param {object} options
- * @param {number} signKey
- * @param {number} clientId
+ * @param {string} signKey
+ * @param {string} clientId
  * @returns {object} - Assigned singKey, clientId to it.
- * @description Assiging signKey and clientId to options object(mocked).
+ * @description Assigning signKey and clientId to options object(mocked).
  */
 const AuthServiceMocked = (options, signKey, clientId) => {
   return {
@@ -43,7 +42,7 @@ const promiseRequestMocked = (options, retries) => {
  * @description Makes request with given options.
  *  In case of connection failure tries `retryCount` times after `retryDelay` intervals.
  */
-function request (options: HttpAPIRequestOptions) {
+function request (options) {
   const _options = Object.assign({}, options)
 
   // set defaults
@@ -54,7 +53,7 @@ function request (options: HttpAPIRequestOptions) {
   if (typeof _options.json === 'undefined') _options.json = true
   const retryRequest = (options, retries) => {
     return promiseRequestMocked(options, retries)
-      .catch((err: Error) => {
+      .catch((err) => {
         if (retries > 0) {
           return Promise.delay(retryDelay).then(() => retryRequest(options, retries - 1))
         } else {

@@ -7,7 +7,7 @@ const Promise = require('bluebird')
  * @param {object} options
  * @param {number} signKey
  * @param {number} clientId
- * @returns {object} - Assigned singnKey, clientId to it.
+ * @returns {object} - Assigned singKey, clientId to it.
  * @description Assiging signKey and clientId to options object(mocked).
  */
 const AuthServiceMocked = (options, signKey, clientId) => {
@@ -20,9 +20,9 @@ const AuthServiceMocked = (options, signKey, clientId) => {
 
 /**
  * @param {object} options
- * @param {number} callCount
+ * @param {number} retries
  * @returns {Promise} Resolved or rejected.
- * @description If options object have truthy resolve property, then returns Promise resolve, else rejets it.
+ * @description If options object have truthy resolve property, then returns Promise resolve, else rejects it.
  */
 const promiseRequestMocked = (options, retries) => {
   const optionsWithRetries = {

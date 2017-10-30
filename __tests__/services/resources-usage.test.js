@@ -5,9 +5,11 @@ const resourceUsage = require('../../src/services/resource-usage')
 describe('resources usage: ', () => {
   describe('getBusyMemoryPercentage(): ', () => {
     test('should be valid. Must return number between 0 and 100.', () => {
-      expect(typeof resourceUsage.__test__.getBusyMemoryPercentage()).toBe('number')
-      expect(resourceUsage.__test__.getBusyMemoryPercentage()).toBeLessThanOrEqual(100)
-      expect(resourceUsage.__test__.getBusyMemoryPercentage()).toBeGreaterThanOrEqual(0)
+      const result = resourceUsage.__test__.getBusyMemoryPercentage()
+
+      expect(typeof result).toBe('number')
+      expect(result).toBeLessThanOrEqual(100)
+      expect(result).toBeGreaterThanOrEqual(0)
     })
   })
 
@@ -74,9 +76,11 @@ describe('resources usage: ', () => {
 
   describe('cpuAverage(): ', () => {
     test('should be valid. Must return object with number props.', () => {
-      expect(typeof resourceUsage.__test__.cpuAverage()).toBe('object')
-      expect(typeof resourceUsage.__test__.cpuAverage().idle).toBe('number')
-      expect(typeof resourceUsage.__test__.cpuAverage().total).toBe('number')
+      const result = resourceUsage.__test__.cpuAverage()
+
+      expect(typeof result).toBe('object')
+      expect(typeof result.idle).toBe('number')
+      expect(typeof result.total).toBe('number')
     })
   })
 

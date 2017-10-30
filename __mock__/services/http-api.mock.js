@@ -4,11 +4,11 @@
 const Promise = require('bluebird')
 
 /**
- * @param {object} options 
- * @param {number} signKey 
+ * @param {object} options
+ * @param {number} signKey
  * @param {number} clientId
  * @returns {object} - Assigned singnKey, clientId to it.
- * @description Assiging signKey and clientId to options object(mocked). 
+ * @description Assiging signKey and clientId to options object(mocked).
  */
 const AuthServiceMocked = (options, signKey, clientId) => {
   return {
@@ -22,7 +22,7 @@ const AuthServiceMocked = (options, signKey, clientId) => {
  * @param {object} options
  * @param {number} callCount
  * @returns {Promise} Resolved or rejected.
- * @description If options object have truthy resolve property, then returns Promise resolve, else rejets it. 
+ * @description If options object have truthy resolve property, then returns Promise resolve, else rejets it.
  */
 const promiseRequestMocked = (options, retries) => {
   const optionsWithRetries = {
@@ -47,7 +47,7 @@ function request (options: HttpAPIRequestOptions) {
   const _options = Object.assign({}, options)
 
   // set defaults
-  const retryCount = _options.retryCount || (_options.retryCount === 0 ? 0 : 1)
+  const retryCount = _options.retryCount || (_options.retryCount === 0 ? 0 : 3)
   const retryDelay = _options.retryDelay || 2
   _options.method = _options.method || 'GET'
 

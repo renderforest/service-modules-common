@@ -26,7 +26,7 @@ describe('http-api: ', () => {
 
       expect.assertions(3)
       return httpApiMock.request(options).then(response => {
-        expect(response.retries).toBe(1)
+        expect(response.retries).toBe(3)
         expect(response.method).toBe('GET')
         expect(response.json).toBeTruthy()
       })

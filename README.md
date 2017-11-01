@@ -6,6 +6,9 @@ Common helpers and utilities for services.
 [![GitHub release](https://img.shields.io/github/release/renderforest/service-modules-common.svg)](https://github.com/renderforest/service-modules-common/releases)
 [![GitHub stars](https://img.shields.io/github/stars/renderforest/service-modules-common.svg)](https://github.com/renderforest/service-modules-common/stargazers)
 
+[![Dep](https://img.shields.io/david/renderforest/service-modules-common.svg)](https://github.com/renderforest/service-modules-common)
+[![DevDep](https://img.shields.io/david/dev/renderforest/service-modules-common.svg)](https://github.com/renderforest/service-modules-common)
+
 # API 
  
 ## ResourceUsage

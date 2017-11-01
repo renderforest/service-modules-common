@@ -1,7 +1,7 @@
 {
   "name": "service-modules-common",
   "description": "Common helpers and utilities for services",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "author": "RenderForest LLC",
   "bugs": {
     "url": "https://github.com/renderforest/service-modules-common/issues"
@@ -24,15 +24,13 @@
     "bluebird": "~3.5.1",
     "request": "~2.83.0",
     "request-promise": "~4.2.2",
-    "service-auth": "https://github.com/renderforest/service-auth#v1.3.3",
+    "service-auth": "https://github.com/renderforest/service-auth#v1.3.4",
     "winston": "~2.4.0"
   },
   "devDependencies": {
     "babel-eslint": "~8.0.1",
     "babel-preset-flow": "~6.23.0",
     "eslint": "~4.10.0",
-    "eslint-config-airbnb": "~16.1.0",
-    "eslint-config-airbnb-base": "~12.1.0",
     "eslint-config-standard": "~10.2.1",
     "eslint-loader": "~1.9.0",
     "eslint-plugin-flowtype": "~2.39.1",
@@ -46,7 +44,7 @@
     "jest": "~21.2.1"
   },
   "engines": {
-    "node": "8.8.1",
+    "node": "8.9.0",
     "npm": "5.5.1"
   },
   "homepage": "https://github.com/renderforest/service-modules-common#readme",
@@ -68,8 +66,8 @@
     "build": "npm run lint && npm test",
     "fix-package": "fixpack",
     "flow": "./node_modules/.bin/flow check",
-    "lint": "./node_modules/.bin/eslint src __test__ __mock__ scripts --fix",
-    "remove-flow": "node scripts/flow-remover.js",
+    "lint": "./node_modules/.bin/eslint ./src --fix",
+    "remove-flow": "rm -rf ./dist && ./node_modules/.bin/flow-remove-types --pretty ./src -d ./dist",
     "test": "npm run remove-flow && jest"
   }
 }

@@ -1,6 +1,6 @@
 'use strict'
 
-const httpApiMock = require('../../__mock__/services/http-api.mock')
+const httpApiMock = require('../../__mocks__/services/http-api.mock')
 
 describe('http-api: ', () => {
   describe('request(): ', () => {

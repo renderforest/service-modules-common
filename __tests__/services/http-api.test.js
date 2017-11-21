@@ -9,7 +9,7 @@ describe('http api: ', () => {
   // `default` property in options` object is for `retry-request` module mock.
 
   describe('request(): ', () => {
-    test('should be valid. In case of there is default values for `retryCount`, `retryDelay`, `method`, `json`.', () => {
+    test('should be valid. Default values for `retryCount`, `retryDelay`, `method`, `json`.', () => {
       const options = {
         default: false,
         retryCount: 'mock-retryCount',
@@ -22,7 +22,7 @@ describe('http api: ', () => {
       return httpApi.request(options).then(result => expect(result).toEqual(options))
     })
 
-    test('should be valid. In case of there is no default values for `retryCount`, `retryDelay`, `method`, `json`.', () => {
+    test('should be valid. No default values for `retryCount`, `retryDelay`, `method`, `json`.', () => {
       const options = {
         default: true
       }

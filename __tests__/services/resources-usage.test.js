@@ -5,7 +5,7 @@ const resourceUsage = require('../../src/services/resource-usage')
 describe('resources usage: ', () => {
   describe('getBusyMemoryPercentage(): ', () => {
     test('should be valid. Must return number between 0 and 100.', () => {
-      const result = resourceUsage.__test__.getBusyMemoryPercentage()
+      const result = resourceUsage.__tests__.getBusyMemoryPercentage()
 
       expect(typeof result).toBe('number')
       expect(result).toBeLessThanOrEqual(100)
@@ -16,7 +16,7 @@ describe('resources usage: ', () => {
   describe('statisticsGetter(): ', () => {
     test('should be valid. Must return object with number props.', () => {
       expect.assertions(2)
-      return resourceUsage.__test__.statisticsGetter(200)
+      return resourceUsage.__tests__.statisticsGetter(200)
         .then((stat) => {
           expect(typeof stat.cpuLoad).toBe('number')
           expect(typeof stat.busyMemory).toBe('number')
@@ -25,7 +25,7 @@ describe('resources usage: ', () => {
 
     test('should be valid. Must return object.', () => {
       expect.assertions(1)
-      return resourceUsage.__test__.statisticsGetter(200)
+      return resourceUsage.__tests__.statisticsGetter(200)
         .then((stat) => {
           expect(typeof stat).toBe('object')
         })
@@ -35,7 +35,7 @@ describe('resources usage: ', () => {
   describe('getCpuBusyLoad(): ', () => {
     test('should be valid. Must return number.', () => {
       expect.assertions(1)
-      return resourceUsage.__test__.getCpuBusyLoad(200).then((load) => expect(typeof load).toBe('number'))
+      return resourceUsage.__tests__.getCpuBusyLoad(200).then((load) => expect(typeof load).toBe('number'))
     })
   })
 
@@ -44,7 +44,7 @@ describe('resources usage: ', () => {
       const fn = () => Promise.resolve(0)
 
       expect.assertions(1)
-      return resourceUsage.__test__.intervalRunner(fn, 100, 5)
+      return resourceUsage.__tests__.intervalRunner(fn, 100, 5)
         .then((arr) => expect(arr).toEqual([0, 0, 0, 0, 0]))
     })
 
@@ -52,7 +52,7 @@ describe('resources usage: ', () => {
       const fn = () => Promise.resolve(0)
 
       expect.assertions(1)
-      return resourceUsage.__test__.intervalRunner(fn, 100, 0)
+      return resourceUsage.__tests__.intervalRunner(fn, 100, 0)
         .then((arr) => expect(arr).toEqual([]))
     })
   })
@@ -76,7 +76,7 @@ describe('resources usage: ', () => {
 
   describe('cpuAverage(): ', () => {
     test('should be valid. Must return object with number props.', () => {
-      const result = resourceUsage.__test__.cpuAverage()
+      const result = resourceUsage.__tests__.cpuAverage()
 
       expect(typeof result).toBe('object')
       expect(typeof result.idle).toBe('number')
@@ -110,8 +110,8 @@ describe('resources usage: ', () => {
         busyMemoryPercentage: 0
       }
 
-      expect(resourceUsage.__test__.arrayAverage(testArray)).toEqual(resultForTestArray)
-      expect(resourceUsage.__test__.arrayAverage(emptyArray)).toEqual(resultForEmptyArray)
+      expect(resourceUsage.__tests__.arrayAverage(testArray)).toEqual(resultForTestArray)
+      expect(resourceUsage.__tests__.arrayAverage(emptyArray)).toEqual(resultForEmptyArray)
     })
   })
 })

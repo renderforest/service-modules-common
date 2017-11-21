@@ -93,7 +93,7 @@ const statisticsGetter = (delay) => {
  * @param {number} interval - Time between function calls
  * @param {number} count - Function's call count
  * @param {[array]} arr - Array for collecting the results (optional)
- * @return {Promise} - Promise wich contains array of given function's results
+ * @return {Promise} - Promise which contains array of given function's results
  * @description Recursively calls given function with given interval between function calls.
  *  Collects given function's results in array
  */
@@ -122,7 +122,7 @@ const resourcesUsage = (interval: number, count: number) => {
 
 module.exports = { resourcesUsage }
 
-module.exports.__test__ = {
+module.exports.__tests__ = {
   getBusyMemoryPercentage,
   getCpuBusyLoad,
   statisticsGetter,

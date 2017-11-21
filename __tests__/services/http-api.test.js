@@ -1,68 +1,90 @@
 'use strict'
 
-const httpApiMock = require('../../__mock__/services/http-api.mock')
+jest.mock('request-promise')
+jest.mock('../../src/utils/retry-request', () => require('../../__mocks__/retry-request'))
 
-describe('http-api: ', () => {
+const httpApi = require('../../src/services/http-api')
+
+describe('http api: ', () => {
+  // `default` property in options` object is for `retry-request` module mock.
+
   describe('request(): ', () => {
-    test('should be valid. Case where retryCount is 0. Must resolve promise with options.', () => {
+    test('should be valid. Default values for `retryCount`, `retryDelay`, `method`, `json`.', () => {
       const options = {
-        resolve: true,
+        default: false,
+        retryCount: 'mock-retryCount',
+        retryDelay: 'mock-retryDelay',
+        method: 'mock-method',
+        json: 'mock-json'
+      }
+      const expectedValue = {
+        default: false,
+        delay: 'mock-retryDelay',
+        json: 'mock-json',
+        method: 'mock-method',
+        retries: 'mock-retryCount',
+        retryCount: 'mock-retryCount',
+        retryDelay: 'mock-retryDelay'
+      }
+
+      expect.assertions(1)
+      return httpApi.request(options).then(result => {
+        expect(result).toEqual(expectedValue)
+      })
+    })
+
+    test('should be valid. No default values for `retryCount`, `retryDelay`, `method`, `json`.', () => {
+      const options = {
+        default: true
+      }
+      const expectedValue = {
+        default: true,
+        delay: 2,
+        json: true,
+        method: 'GET',
+        retries: 3
+      }
+
+      expect.assertions(1)
+      return httpApi.request(options).then(response => {
+        expect(response).toEqual(expectedValue)
+      })
+    })
+
+    test('should be valid.', () => {
+      const options = {
         retryCount: 0
       }
-
-      expect.assertions(3)
-      // promiseRequestMocked function returns Promise with retries
-      return httpApiMock.request(options).then(response => {
-        expect(response.retries).toBe(0)
-        expect(response.method).toBe('GET')
-        expect(response.json).toBeTruthy()
-      })
-    })
-
-    test('should be valid. Use default `retryCount` value. Must resolve promise with options.', () => {
-      const options = {
-        resolve: true
+      const expectedValue = {
+        json: true,
+        method: 'GET',
+        retryCount: 0,
+        delay: 2,
+        retries: 0
       }
 
-      expect.assertions(3)
-      return httpApiMock.request(options).then(response => {
-        expect(response.retries).toBe(3)
-        expect(response.method).toBe('GET')
-        expect(response.json).toBeTruthy()
-      })
-    })
-
-    test('should be invalid. Must reject promise with retries count.', () => {
-      const retryCount = 5
-      const options = {
-        retryCount,
-        method: 'POST',
-        json: false,
-        resolve: false
-      }
-
-      expect.assertions(3)
-      return httpApiMock.request(options).catch(rejection => {
-        expect(rejection.retries).toBe(0)
-        expect(rejection.method).toBe('POST')
-        expect(rejection.json).toBeFalsy()
+      expect.assertions(1)
+      return httpApi.request(options).then(response => {
+        expect(response).toEqual(expectedValue)
       })
     })
   })
 
   describe('authorizedRequest(): ', () => {
-    test('should be valid. Must resolve promise with object. Should have signKey and clientId props.', () => {
+    test('should return `finalOptions`.', () => {
       const options = {
-        resolve: true
+        uri: 'https://mock-mock.com?mock=mock-value',
+        body: 'mock-body',
+        retryCount: 0
       }
       const signKey = 'mock-signKey'
-      const clientId = 'mock-clientId'
+      const clientId = 'mock-clientid'
 
-      expect.assertions(3)
-      return httpApiMock.authorizedRequest(signKey, clientId)(options).then(response => {
-        expect(typeof response).toBe('object')
-        expect(response.signKey).toBe(signKey)
-        expect(response.clientId).toBe(clientId)
+      return httpApi.authorizedRequest(signKey, clientId)(options).then(result => {
+        expect(result.headers.authorization).toBeDefined()
+        expect(result.headers.clientid).toBe(clientId)
+        expect(result.headers.nonce).toBeDefined()
+        expect(result.headers.timestamp).toBeDefined()
       })
     })
   })

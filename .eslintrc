@@ -7,7 +7,9 @@
     "expect": false,
     "test": false,
     "describe": false,
-    "jest": false
+    "jest": false,
+    "beforeEach": false,
+    "beforeAll": false
   },
   "plugins": [
     "flowtype"

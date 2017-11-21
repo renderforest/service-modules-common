@@ -41,12 +41,8 @@ describe('http api: ', () => {
         default: true,
         delay: 2,
         json: true,
-<<<<<<< HEAD
         method: 'GET',
         retries: 3
-=======
-        method: 'GET'
->>>>>>> d7c6bc2d46399dff193705a1ab9a508ced3bcc48
       }
 
       expect.assertions(1)
@@ -62,13 +58,9 @@ describe('http api: ', () => {
       const expectedValue = {
         json: true,
         method: 'GET',
-<<<<<<< HEAD
         retryCount: 0,
         delay: 2,
         retries: 0
-=======
-        retryCount: 0
->>>>>>> d7c6bc2d46399dff193705a1ab9a508ced3bcc48
       }
 
       expect.assertions(1)

@@ -5,7 +5,7 @@ jest.mock('request-promise')
 const retryRequest = require('../../src/utils/retry-request')
 
 describe('utils/retry-request: ', () => {
-  /* In options `resolved` flag is for mocked `request-promise` module. 
+  /* In options `resolved` flag is for mocked `request-promise` module.
   If `resolved` flag is true, request will be resolved, otherwise will be rejected with Error. */
 
   describe('retryRequest(): ', () => {

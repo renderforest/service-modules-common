@@ -33,7 +33,7 @@ describe('utils/retry-request: ', () => {
         const endTime = Date.now()
         const spendTime = endTime - startTime
 
-        // Multiplayed by 1000 to get seconds.
+        // multiplied by 1000 to get seconds.
         const actualTime = delay * retries * 1000
         expect(spendTime - actualTime).toBeLessThanOrEqual(100)
       })
@@ -65,7 +65,7 @@ describe('utils/retry-request: ', () => {
         const endTime = Date.now()
         const spendTime = endTime - startTime
 
-        // Multiplayed by 1000 to get seconds.
+        // multiplied by 1000 to get seconds.
         const actualTime = delay * retries * 1000
         expect(spendTime - actualTime).toBeLessThanOrEqual(100)
       })

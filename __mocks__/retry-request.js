@@ -1,3 +1,5 @@
+'use strict'
+
 module.exports = (options, retries, delay) => {
   if (options.default === undefined) {
     expect(retries).toBe(0)

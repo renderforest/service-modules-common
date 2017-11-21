@@ -17,9 +17,20 @@ describe('http api: ', () => {
         method: 'mock-method',
         json: 'mock-json'
       }
+      const expectedValue = {
+        default: false,
+        delay: 'mock-retryDelay',
+        json: 'mock-json',
+        method: 'mock-method',
+        retries: 'mock-retryCount',
+        retryCount: 'mock-retryCount',
+        retryDelay: 'mock-retryDelay'
+      }
 
-      expect.assertions(3)
-      return httpApi.request(options).then(result => expect(result).toEqual(options))
+      expect.assertions(1)
+      return httpApi.request(options).then(result => {
+        expect(result).toEqual(expectedValue)
+      })
     })
 
     test('should be valid. In case of there is no default values for `retryCount`, `retryDelay`, `method`, `json`.', () => {
@@ -28,11 +39,13 @@ describe('http api: ', () => {
       }
       const expectedValue = {
         default: true,
+        delay: 2,
         json: true,
-        method: "GET"
+        method: 'GET',
+        retries: 3
       }
 
-      expect.assertions(3)
+      expect.assertions(1)
       return httpApi.request(options).then(response => {
         expect(response).toEqual(expectedValue)
       })
@@ -44,11 +57,13 @@ describe('http api: ', () => {
       }
       const expectedValue = {
         json: true,
-        method: "GET",
-        retryCount: 0
+        method: 'GET',
+        retryCount: 0,
+        delay: 2,
+        retries: 0
       }
 
-      expect.assertions(3)
+      expect.assertions(1)
       return httpApi.request(options).then(response => {
         expect(response).toEqual(expectedValue)
       })

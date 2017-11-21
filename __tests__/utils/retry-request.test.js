@@ -29,7 +29,7 @@ describe('utils/retry-request: ', () => {
 
       expect.assertions(1)
       const startTime = Date.now()
-      return retryRequest(options, retries, delay).catch(result => {
+      return retryRequest(options, retries, delay).catch(() => {
         const endTime = Date.now()
         const spendTime = endTime - startTime
 
@@ -61,7 +61,7 @@ describe('utils/retry-request: ', () => {
 
       expect.assertions(1)
       const startTime = Date.now()
-      return retryRequest(options, retries, delay).catch(result => {
+      return retryRequest(options, retries, delay).catch(() => {
         const endTime = Date.now()
         const spendTime = endTime - startTime
 

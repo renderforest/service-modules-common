@@ -10,7 +10,7 @@ const promiseRequest = require('request-promise')
  * @param {number} delay - Delay between retries.
  * @returns {Promise}
  * @description - Sends request with given `options`.
- *  If there is error while sending the request, it tries `retries` times with given `delay` between retries. 
+ *  If there is error while sending the request, it tries `retries` times with given `delay` between retries.
  */
 const retryRequest = (options: Object, retries: number, delay: number) => {
   return promiseRequest(options)

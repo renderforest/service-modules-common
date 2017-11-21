@@ -29,7 +29,7 @@ describe('http api: ', () => {
       const expectedValue = {
         default: true,
         json: true,
-        method: "GET"
+        method: 'GET'
       }
 
       expect.assertions(3)
@@ -44,7 +44,7 @@ describe('http api: ', () => {
       }
       const expectedValue = {
         json: true,
-        method: "GET",
+        method: 'GET',
         retryCount: 0
       }
 

@@ -15,9 +15,9 @@ Common helpers and utilities for services.
 
 #### resourcesUsage(interval, count). 
 
-* Interval is a total time in which you want to check statistics. 
-* Count is call quantity in given interval. 
-* Returns promise.
+ * Interval is a total time in which you want to check statistics. 
+ * Count is call quantity in given interval. 
+ * Returns promise.
 
   ``` javascript
     const ResourceUsage = require('service-modules-common').ResourceUsage

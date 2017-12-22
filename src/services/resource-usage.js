@@ -35,9 +35,9 @@ const cpuAverage = () => {
 }
 
 /**
- * @param .. TODO: fix this
- * @return {object} - ..
- * @description ..
+ * @param array
+ * @return {{cpuLoadPercentage: number, busyMemoryPercentage: number}}
+ * @description Calculate average from given items.
  */
 const arrayAverage = (array: TArrayAverageArg) => {
   const cpuLoadSum = array.reduce((sum, current) => {

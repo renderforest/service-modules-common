@@ -1,7 +1,7 @@
 {
   "name": "service-modules-common",
   "description": "Common helpers and utilities for services",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "author": "RenderForest LLC",
   "bugs": {
     "url": "https://github.com/renderforest/service-modules-common/issues"
@@ -24,26 +24,26 @@
     "bluebird": "~3.5.1",
     "request": "~2.83.0",
     "request-promise": "~4.2.2",
-    "service-auth": "https://github.com/renderforest/service-auth#v1.4.3",
+    "service-auth": "https://github.com/renderforest/service-auth#v1.4.4",
     "winston": "~2.4.0"
   },
   "devDependencies": {
-    "babel-eslint": "~8.0.2",
+    "babel-eslint": "~8.0.3",
     "babel-preset-flow": "~6.23.0",
-    "eslint": "~4.12.1",
+    "eslint": "~4.13.1",
     "eslint-config-standard": "~10.2.1",
-    "eslint-plugin-flowtype": "~2.39.1",
+    "eslint-plugin-flowtype": "~2.40.1",
     "eslint-plugin-import": "~2.8.0",
     "eslint-plugin-node": "~5.2.1",
     "eslint-plugin-promise": "~3.6.0",
     "eslint-plugin-standard": "~3.0.1",
     "fixpack": "~2.3.1",
-    "flow-bin": "~0.59.0",
+    "flow-bin": "~0.61.0",
     "flow-remove-types": "~1.2.3",
-    "jest": "~21.2.1"
+    "jest": "~22.0.4"
   },
   "engines": {
-    "node": "8.9.1",
+    "node": "8.9.3",
     "npm": "5.5.1"
   },
   "homepage": "https://github.com/renderforest/service-modules-common#readme",
@@ -55,7 +55,7 @@
     "Service",
     "Utilities"
   ],
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "private": true,
   "repository": {
     "type": "git",

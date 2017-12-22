@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 'use strict'
 
 const Promise = require('bluebird')

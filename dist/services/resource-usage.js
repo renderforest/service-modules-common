@@ -1,4 +1,4 @@
-/*  */
+// 
 'use strict'
 
 const os = require('os')
@@ -35,9 +35,9 @@ const cpuAverage = () => {
 }
 
 /**
- * @param .. TODO: fix this
- * @return {object} - ..
- * @description ..
+ * @param {Array} array
+ * @return {{cpuLoadPercentage: number, busyMemoryPercentage: number}}
+ * @description Calculate average from given items.
  */
 const arrayAverage = (array) => {
   const cpuLoadSum = array.reduce((sum, current) => {
@@ -120,13 +120,14 @@ const resourcesUsage = (interval, count) => {
   return intervalRunner(() => statisticsGetter(timeBetweenMeasures), timeBetweenMeasures, count).then(arrayAverage)
 }
 
-module.exports = { resourcesUsage }
-
-module.exports.__tests__ = {
-  getBusyMemoryPercentage,
-  getCpuBusyLoad,
-  statisticsGetter,
-  intervalRunner,
-  arrayAverage,
-  cpuAverage
+module.exports = {
+  resourcesUsage,
+  __tests__: {
+    getBusyMemoryPercentage,
+    getCpuBusyLoad,
+    statisticsGetter,
+    intervalRunner,
+    arrayAverage,
+    cpuAverage
+  }
 }

@@ -1,4 +1,4 @@
-/*  */
+// 
 'use strict'
 
 const AuthService = require('service-auth')

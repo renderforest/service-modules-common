@@ -35,7 +35,7 @@ const cpuAverage = () => {
 }
 
 /**
- * @param array
+ * @param {Array} array
  * @return {{cpuLoadPercentage: number, busyMemoryPercentage: number}}
  * @description Calculate average from given items.
  */

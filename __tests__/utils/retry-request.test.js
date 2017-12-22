@@ -37,7 +37,7 @@ describe('utils/retry-request: ', () => {
 
         // multiplied by 1000 to get seconds.
         const actualTime = delay * retries * 1000
-        expect(spendTime - actualTime).toBeLessThanOrEqual(100)
+        expect(spendTime - actualTime).toBeLessThanOrEqual(200) // approximated (preferable time)
       })
     })
 
@@ -69,7 +69,7 @@ describe('utils/retry-request: ', () => {
 
         // multiplied by 1000 to get seconds.
         const actualTime = delay * retries * 1000
-        expect(spendTime - actualTime).toBeLessThanOrEqual(100)
+        expect(spendTime - actualTime).toBeLessThanOrEqual(200) // approximated (preferable time)
       })
     })
   })

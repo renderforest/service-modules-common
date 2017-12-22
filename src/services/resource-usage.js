@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 'use strict'
 
 const os = require('os')
@@ -60,7 +60,7 @@ const arrayAverage = (array: TArrayAverageArg) => {
  * @returns {Promise.<number>} - Cpu's current load
  * @description Asynchronously measures cpu's state, calculates difference between two measures and gets cpu busy load.
  */
-const getCpuBusyLoad = (delay) => {
+const getCpuBusyLoad = (delay: number) => {
   return Promise.resolve().delay(delay).then(() => cpuAverage())
     .then((startMeasure: TCpuAverage) => {
       const endMeasure = cpuAverage()
@@ -77,7 +77,7 @@ const getCpuBusyLoad = (delay) => {
  *  getCpuBusyLoad function to get cpu's load
  *  Returns object with two properties cpuLoad and busyMemory
  */
-const statisticsGetter = (delay) => {
+const statisticsGetter = (delay: number) => {
   const busyMemory = getBusyMemoryPercentage()
   return getCpuBusyLoad(delay).then((cpuLoad: number) => {
     return {
@@ -97,7 +97,7 @@ const statisticsGetter = (delay) => {
  * @description Recursively calls given function with given interval between function calls.
  *  Collects given function's results in array
  */
-const intervalRunner = (fn, interval, count, arr = []) => {
+const intervalRunner = (fn: Function, interval: number, count: number, arr?: Array<mixed> = []) => {
   if (count <= 0) {
     return Promise.resolve(arr)
   }
@@ -120,13 +120,14 @@ const resourcesUsage = (interval: number, count: number) => {
   return intervalRunner(() => statisticsGetter(timeBetweenMeasures), timeBetweenMeasures, count).then(arrayAverage)
 }
 
-module.exports = { resourcesUsage }
-
-module.exports.__tests__ = {
-  getBusyMemoryPercentage,
-  getCpuBusyLoad,
-  statisticsGetter,
-  intervalRunner,
-  arrayAverage,
-  cpuAverage
+module.exports = {
+  resourcesUsage,
+  __tests__: {
+    getBusyMemoryPercentage,
+    getCpuBusyLoad,
+    statisticsGetter,
+    intervalRunner,
+    arrayAverage,
+    cpuAverage
+  }
 }

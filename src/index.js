@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 'use strict'
 
 module.exports.Logger = require('../dist/services/logger')

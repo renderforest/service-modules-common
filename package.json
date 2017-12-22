@@ -24,7 +24,7 @@
     "bluebird": "~3.5.1",
     "request": "~2.83.0",
     "request-promise": "~4.2.2",
-    "service-auth": "https://github.com/renderforest/service-auth#v1.4.3",
+    "service-auth": "https://github.com/renderforest/service-auth#v1.4.4",
     "winston": "~2.4.0"
   },
   "devDependencies": {
@@ -40,7 +40,7 @@
     "fixpack": "~2.3.1",
     "flow-bin": "~0.61.0",
     "flow-remove-types": "~1.2.3",
-    "jest": "~22.0.3"
+    "jest": "~22.0.4"
   },
   "engines": {
     "node": "8.9.3",

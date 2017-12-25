@@ -1,7 +1,7 @@
 {
   "name": "service-modules-common",
   "description": "Common helpers and utilities for services",
-  "version": "1.4.7",
+  "version": "1.4.8",
   "author": "RenderForest LLC",
   "bugs": {
     "url": "https://github.com/renderforest/service-modules-common/issues"

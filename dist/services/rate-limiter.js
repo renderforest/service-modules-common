@@ -14,7 +14,8 @@ module.exports = {
    * @description Builds `redisKey` from given options. Increments the number stored at given `redisKey` by one.
    *  If there is no such `redisKey` it creates and sets expire time. If incremented number which is stored at given
    *  `redisKey` is greater than current `THRESHOLD` rejects with Error. In each case it sets 'x-rate-limit' and
-   *  'x-rate-limit-remaining' in res.headers.
+   *  'x-rate-limit-remaining' in res.headers. 'x-rate-limit' is `THRESHOLD` for current request type.
+   *  `x-rate-limit-remaining` is remained request count.
    */
   checkAbuseUser: (redis, options) => {
     return (req, res, next) => {
@@ -26,7 +27,7 @@ module.exports = {
 
       const userId = req.user.id
 
-      const timestamp = new Date()
+      const timestamp = +new Date()
       const expiringPeriod = options.EXPIRE
       const timeFraction = timestamp - (timestamp % expiringPeriod)
 
@@ -45,6 +46,7 @@ module.exports = {
         })
         .then((incrementedResult) => {
           const requestsRemain = REQUEST_THRESHOLD - incrementedResult
+
           res.set({
             'x-rate-limit': REQUEST_THRESHOLD,
             'x-rate-limit-remaining': requestsRemain

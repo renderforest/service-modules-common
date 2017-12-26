@@ -2,6 +2,8 @@
 
 const Promise = require('bluebird')
 
+const { RateLimitExceededError } = require('../utils/errors')
+
 module.exports = {
   /**
    * @param {Object} redis - Promisified `Redis` instance.
@@ -36,7 +38,7 @@ module.exports = {
             return redis.expireAsync(redisKey, expiringPeriod)
               .thenReturn(incrementedResult)
           } else if (incrementedResult > REQUEST_THRESHOLD) {
-            return Promise.reject(new Error('Rate limit exceeded.'))
+            return Promise.reject(new RateLimitExceededError('Request rate limit has been reached.'))
           } else {
             return incrementedResult
           }

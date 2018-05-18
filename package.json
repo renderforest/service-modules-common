@@ -57,11 +57,8 @@
     "url": "https://github.com/renderforest/service-modules-common"
   },
   "scripts": {
-    "build": "npm run lint && npm test",
     "fix-package": "fixpack",
-    "flow": "./node_modules/.bin/flow check",
     "lint": "./node_modules/.bin/eslint ./src --fix",
-    "remove-flow": "rm -rf ./dist && ./node_modules/.bin/flow-remove-types --pretty ./src -d ./dist",
     "test": "npm run remove-flow && jest"
   }
 }

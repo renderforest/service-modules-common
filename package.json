@@ -60,6 +60,8 @@
     "fix-package": "fixpack",
     "lint": "./node_modules/.bin/eslint ./src ./test ./__mocks__ --fix",
     "lint-no-fix": "./node_modules/.bin/eslint ./src ./test ./__mocks__",
-    "test": "jest"
+    "test": "jest --silent",
+    "test-coverage": "jest --coverage --silent",
+    "test-watch": "jest --watch --silent"
   }
 }

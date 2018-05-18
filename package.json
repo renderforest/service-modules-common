@@ -1,6 +1,6 @@
 {
   "name": "service-modules-common",
-  "description": "Common helpers and utilities for services",
+  "description": "Common helpers and utilities for services.",
   "version": "1.4.9",
   "author": "RenderForest LLC",
   "bugs": {
@@ -8,16 +8,16 @@
   },
   "contributors": [
     {
-      "name": "Edgar Marukyan",
-      "email": "emarukyan@gmail.com"
-    },
-    {
       "name": "Albert Hambardzumyan",
       "email": "hambardzumyan.albert@gmail.com"
     },
     {
       "name": "Narek Hovhannisyan",
       "email": "narekgilmour@gmail.com"
+    },
+    {
+      "name": "Edgar Marukyan",
+      "email": "emarukyan@gmail.com"
     }
   ],
   "dependencies": {
@@ -41,12 +41,11 @@
   },
   "homepage": "https://github.com/renderforest/service-modules-common#readme",
   "keywords": [
-    "Helpers",
-    "HttpApi service",
-    "Logger service",
-    "ResourceUsage service",
-    "Service",
-    "Utilities"
+    "HttpApi",
+    "ResourceUsage",
+    "logger",
+    "service",
+    "utility"
   ],
   "main": "./src/index.js",
   "pre-commit": [

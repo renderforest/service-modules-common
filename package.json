@@ -22,9 +22,6 @@
   ],
   "dependencies": {
     "bluebird": "~3.5.1",
-    "request": "~2.83.0",
-    "request-promise": "~4.2.2",
-    "service-auth": "https://github.com/renderforest/service-auth#v1.4.6",
     "winston": "~2.4.0"
   },
   "devDependencies": {
@@ -62,8 +59,8 @@
   },
   "scripts": {
     "fix-package": "fixpack",
-    "lint": "./node_modules/.bin/eslint ./src ./test ./__mocks__ --fix",
-    "lint-no-fix": "./node_modules/.bin/eslint ./src ./test ./__mocks__",
+    "lint": "./node_modules/.bin/eslint ./src ./test --fix",
+    "lint-no-fix": "./node_modules/.bin/eslint ./src ./test",
     "pre-commit": "npm run lint-no-fix && npm run test",
     "test": "jest --silent",
     "test-coverage": "jest --coverage --silent",

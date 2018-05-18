@@ -1,6 +1,6 @@
 {
-  "name": "service-modules-common",
-  "description": "Common helpers and utilities for services",
+  "name": "@renderforest/service-modules-common",
+  "description": "Common helpers and utilities for services.",
   "version": "1.4.9",
   "author": "RenderForest LLC",
   "bugs": {
@@ -8,31 +8,31 @@
   },
   "contributors": [
     {
-      "name": "Edgar Marukyan",
-      "email": "emarukyan@gmail.com"
-    },
-    {
       "name": "Albert Hambardzumyan",
       "email": "hambardzumyan.albert@gmail.com"
     },
     {
       "name": "Narek Hovhannisyan",
       "email": "narekgilmour@gmail.com"
+    },
+    {
+      "name": "Edgar Marukyan",
+      "email": "emarukyan@gmail.com"
     }
   ],
   "dependencies": {
-    "bluebird": "~3.5.1",
-    "winston": "~2.4.0"
+    "bluebird": "3.5.1",
+    "winston": "2.4.2"
   },
   "devDependencies": {
-    "eslint": "~4.14.0",
-    "eslint-config-standard": "~10.2.1",
-    "eslint-plugin-import": "~2.8.0",
-    "eslint-plugin-node": "~5.2.1",
-    "eslint-plugin-promise": "~3.6.0",
-    "eslint-plugin-standard": "~3.0.1",
-    "fixpack": "~2.3.1",
-    "jest": "~22.0.4",
+    "eslint": "4.19.1",
+    "eslint-config-standard": "11.0.0",
+    "eslint-plugin-import": "2.12.0",
+    "eslint-plugin-node": "6.0.1",
+    "eslint-plugin-promise": "3.7.0",
+    "eslint-plugin-standard": "3.1.0",
+    "fixpack": "2.3.1",
+    "jest": "22.4.3",
     "pre-commit": "1.2.2"
   },
   "engines": {
@@ -41,18 +41,16 @@
   },
   "homepage": "https://github.com/renderforest/service-modules-common#readme",
   "keywords": [
-    "Helpers",
-    "HttpApi service",
-    "Logger service",
-    "ResourceUsage service",
-    "Service",
-    "Utilities"
+    "HttpApi",
+    "ResourceUsage",
+    "logger",
+    "service",
+    "utility"
   ],
   "main": "./src/index.js",
   "pre-commit": [
     "pre-commit"
   ],
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/renderforest/service-modules-common"

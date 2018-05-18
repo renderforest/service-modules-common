@@ -1,5 +1,3 @@
-'use strict'
-
 const resourceUsage = require('../../src/services/resource-usage')
 
 describe('resources usage: ', () => {

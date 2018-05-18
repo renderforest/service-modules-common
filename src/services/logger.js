@@ -1,6 +1,3 @@
-// @flow
-'use strict'
-
 const winston = require('winston')
 
 winston.setLevels({

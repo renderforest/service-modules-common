@@ -1,4 +1,3 @@
-// @flow
 'use strict'
 
 const AuthService = require('service-auth')
@@ -17,7 +16,7 @@ const retryRequest = require('../utils/retry-request')
  *  In case of connection failure tries `retryCount` times after `retryDelay` intervals.
  *  `retryDelay` multiplayed by 1000 to get seconds.
  */
-const request = (options: HttpAPIRequestOptions) => {
+const request = (options) => {
   const _options = Object.assign({}, options)
 
   const retryCount = _options.retryCount || (_options.retryCount === 0 ? 0 : 3)
@@ -35,8 +34,8 @@ const request = (options: HttpAPIRequestOptions) => {
  * @description - Makes authorized request with given signKey, clientId, and options.
  *  In case of connection failure tries `retryCount` times after `retryDelay` intervals.
  */
-const authorizedRequest = (signKey: string, clientId: string) => {
-  return (options: Object) => {
+const authorizedRequest = (signKey, clientId) => {
+  return (options) => {
     const finalOptions = AuthService.setAuthorization(options, signKey, clientId)
 
     return request(finalOptions)

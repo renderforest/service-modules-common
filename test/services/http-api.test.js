@@ -1,7 +1,7 @@
-'use strict'
+const mockRetryRequest = require('../../__mocks__/retry-request')
 
 jest.mock('request-promise')
-jest.mock('../../src/utils/retry-request', () => require('../../__mocks__/retry-request'))
+jest.mock('../../src/utils/retry-request', () => mockRetryRequest)
 
 const httpApi = require('../../src/services/http-api')
 

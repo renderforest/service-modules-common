@@ -1,5 +1,3 @@
-'use strict'
-
 const logger = require('../../src/services/logger')
 
 describe('logger: ', () => {

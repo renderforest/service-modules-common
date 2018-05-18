@@ -1,5 +1,3 @@
-'use strict'
-
 const AuthService = require('service-auth')
 
 const retryRequest = require('../utils/retry-request')

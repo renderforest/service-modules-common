@@ -58,7 +58,8 @@
   },
   "scripts": {
     "fix-package": "fixpack",
-    "lint": "./node_modules/.bin/eslint ./src --fix",
-    "test": "npm run remove-flow && jest"
+    "lint": "./node_modules/.bin/eslint ./src ./test ./__mocks__ --fix",
+    "lint-no-fix": "./node_modules/.bin/eslint ./src ./test ./__mocks__",
+    "test": "jest"
   }
 }

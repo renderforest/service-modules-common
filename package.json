@@ -1,5 +1,5 @@
 {
-  "name": "service-modules-common",
+  "name": "@renderforest/service-modules-common",
   "description": "Common helpers and utilities for services.",
   "version": "1.4.9",
   "author": "RenderForest LLC",

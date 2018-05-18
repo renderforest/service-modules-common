@@ -50,7 +50,7 @@
     "Service",
     "Utilities"
   ],
-  "main": "./dist/index.js",
+  "main": "./src/index.js",
   "private": true,
   "repository": {
     "type": "git",

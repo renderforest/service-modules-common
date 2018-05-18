@@ -60,6 +60,6 @@
     "fix-package": "fixpack",
     "lint": "./node_modules/.bin/eslint ./src ./test ./__mocks__ --fix",
     "lint-no-fix": "./node_modules/.bin/eslint ./src ./test ./__mocks__",
-    "test": "npm run remove-flow && jest"
+    "test": "jest"
   }
 }

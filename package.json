@@ -52,7 +52,6 @@
   "pre-commit": [
     "pre-commit"
   ],
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/renderforest/service-modules-common"
